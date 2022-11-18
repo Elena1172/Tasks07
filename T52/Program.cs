@@ -25,13 +25,14 @@ void PtintMatrix(int[,] matr)
         Console.Write("| ");
         for (int j = 0; j < matr.GetLength(1); j++)
         {
-            Console.Write("{0,4} |", matr[i, j]);
+            Console.Write("{0,5} | ", matr[i, j]);
         }
         Console.WriteLine();
     }
 }
-void AveragElementColumns(int[,] matrix)
+double[] AveragElementColumns(int[,] matrix)
 {
+    double[] array = new double[matrix.GetLongLength(1)];
     for (int j = 0; j < matrix.GetLength(1); j++)
     {
         double result = default;
@@ -41,8 +42,17 @@ void AveragElementColumns(int[,] matrix)
         }
         result = result / matrix.GetLength(0);
         result = Math.Round(result, 1);
-        Console.Write($"{result};   ");
+        array[j] = result;
 
+    }
+    return array;
+}
+void PrintArray(double[] array)
+{
+    Console.Write("| ");
+    foreach (double item in array)
+    {
+        Console.Write("{0,5} | ", item);
     }
 }
 Console.Write("Задайте размеры двумерного массива. Число строк = ");
@@ -50,10 +60,11 @@ int row = Convert.ToInt32(Console.ReadLine());
 Console.Write("Число столбцов = ");
 int column = Convert.ToInt32(Console.ReadLine());
 Console.Write("Нижняя граница массива =  ");
-int min= Convert.ToInt32(Console.ReadLine());
+int min = Convert.ToInt32(Console.ReadLine());
 Console.Write("Верхняя граница массива =  ");
-int max= Convert.ToInt32(Console.ReadLine());
-int[,] newmatrix = Great2D(row,column,min,max);
+int max = Convert.ToInt32(Console.ReadLine());
+int[,] newmatrix = Great2D(row, column, min, max);
 PtintMatrix(newmatrix);
 Console.WriteLine("Среднее арифметическое каждого столбца:");
-AveragElementColumns(newmatrix);
+double[] newarray = AveragElementColumns(newmatrix);
+PrintArray(newarray);
