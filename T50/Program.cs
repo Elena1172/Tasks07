@@ -22,7 +22,19 @@ int[,] GreatMatrix(int rows, int colums){
     }
     return matrix;
 }
+void Printmatrix(int[,] matrix){
+
+for (int i = 0; i < matrix.GetLength(0); i++)
+{
+    for (int j = 0; j < matrix.GetLength(1); j++)
+    {
+        Console.Write("{0,4} | ", matrix[i,j]);
+    }
+    Console.WriteLine();
+}
+}
 int[,] newMatrix = GreatMatrix(5,7);
+Printmatrix(newMatrix);
 Console.Write("Позиции элемента в массиве: номер строки ");
 int row = Convert.ToInt32(Console.ReadLine());
 Console.Write("номер столбца: ");
